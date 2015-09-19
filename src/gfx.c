@@ -20,10 +20,13 @@
 /*         Adapted by Zeograd (Olivier Jolly) for using Allegro           */
 /*                                                                        */
 /**************************************************************************/
-
+#include <SDL/SDL.h>
 #include "pce.h"
 #include "utils.h"
 #include "config.h"
+
+extern SDL_Surface *screen;
+extern SDL_Surface *physical_screen;
 
 typedef struct {
   UChar r,g,b;
@@ -33,27 +36,39 @@ rgb_map_struct rgb_map[256];
 
 void SetPalette(void)
 {
-  UChar i;
+	UChar i;
+	SDL_Color colors [256];
 
-  osd_gfx_set_color(255, 0x3f, 0x3f, 0x3f);
-  rgb_map[255].r = 255;
-  rgb_map[255].b = 255;
-  rgb_map[255].g = 255;
-
-  for (i = 0; i < 255; i++)
+	osd_gfx_set_color(255, 0x3f, 0x3f, 0x3f);
+	rgb_map[255].r = 255;
+	rgb_map[255].b = 255;
+	rgb_map[255].g = 255;
+	colors[255].r = rgb_map[255].r;
+	colors[255].g = rgb_map[255].g;
+	colors[255].b = rgb_map[255].b;
+		
+	for (i = 0; i < 255; i++)
     {
-      osd_gfx_set_color(i, (i & 0x1C) << 1, (i & 0xe0) >> 2, (i & 0x03) << 4);
-      rgb_map[i].r = (i & 0x1C) << 3;
-      rgb_map[i].g = (i & 0xe0);
-      rgb_map[i].b = (i & 0x03) << 6;
+		osd_gfx_set_color(i, (i & 0x1C) << 1, (i & 0xe0) >> 2, (i & 0x03) << 4);
+		rgb_map[i].r = (i & 0x1C) << 3;
+		rgb_map[i].g = (i & 0xe0);
+		rgb_map[i].b = (i & 0x03) << 6;
+		
+		colors[i].r = rgb_map[i].r;
+		colors[i].g = rgb_map[i].g;
+		colors[i].b = rgb_map[i].b;
     }
+    
+    SDL_SetPalette (physical_screen, SDL_LOGPAL|SDL_PHYSPAL, colors, 0, 256);
+    
+    /*
 #if defined(SDL)
 
-  olay_cmap[255].r = (Uint8) ((0.299 * 0xff) + (0.587 * 0xff) + (0.114 * 0xff));
-  olay_cmap[255].g = (Uint8) ((0xff - olay_cmap[i].r) * 0.565 + 128);
-  olay_cmap[255].b = (Uint8) ((0xff - olay_cmap[i].r) * 0.713 + 128);
+	olay_cmap[255].r = (Uint8) ((0.299 * 0xff) + (0.587 * 0xff) + (0.114 * 0xff));
+	olay_cmap[255].g = (Uint8) ((0xff - olay_cmap[i].r) * 0.565 + 128);
+	olay_cmap[255].b = (Uint8) ((0xff - olay_cmap[i].r) * 0.713 + 128);
 
-  for (i = 0; i < 255; i++)
+	for (i = 0; i < 255; i++)
     {
       int r,g,b;
       r = (i & 0x1C) << 3;
@@ -64,7 +79,7 @@ void SetPalette(void)
       olay_cmap[i].b = (Uint8)((r - olay_cmap[i].r) * 0.713 + 128);
     }
 
-#endif
+#endif*/
 }
 
 

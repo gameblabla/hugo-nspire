@@ -235,18 +235,6 @@ int osd_gfx_init_normal_mode()
   physical_screen_rect.h = rect.end_y;
 
   screen = SDL_CreateRGBSurface(SDL_SWSURFACE | SDL_LOGPAL, io.screen_w, io.screen_h, 8, 0, 0, 0, 0);
-  
-  /* 
-	nSDL for TI Nspire requires SetPalette to be set 
-	But what are the colors hugo are expecting ?
-	for (cnt=0; cnt < PALETTE_SIZE; cnt++, pptr++)
-	{
-		colors[cnt].r = pptr->red;
-		colors[cnt].g = pptr->green;
-		colors[cnt].b = pptr->blue;
-	}
-	SDL_SetPalette (screen, SDL_LOGPAL|SDL_PHYSPAL, colors, 0, 256);
-  */
 
   return (screen && physical_screen) ? 1 : 0;
 }

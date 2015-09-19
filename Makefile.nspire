@@ -1,11 +1,12 @@
 CC = nspire-gcc
 
-CFLAGS = -Os -fdata-sections -ffunction-sections -fomit-frame-pointer -marm -march=armv5te -mtune=arm926ej-s -I. -I/usr/include/SDL -std=gnu89 -DSOLARIS -DNEW_GFX_ENGINE $(DEFINES)
-DEFINES = -DINLINED_ACCESSORS
+CFLAGS = -O3 -fdata-sections -ffunction-sections -fomit-frame-pointer -marm -march=armv5te -mtune=arm926ej-s -I. -I/usr/include/SDL -std=gnu89 -DSOLARIS $(DEFINES)
+DEFINES = -DINLINED_ACCESSORS -DSDL
 LDFLAGS = -lSDL -lm -lz -Wl,--as-needed -Wl,--gc-sections -flto
 OUTPUT = hugo
 
-SOURCES = ./src/subs_eagle.c \
+SOURCES = ./src/main.c \
+./src/subs_eagle.c \
 ./src/ogglength.c \
 ./src/cd.c \
 ./src/osd_linux_sdl_music.c \
@@ -52,7 +53,7 @@ gen:
 	genzehn --input hugo --output hug.t --compress
 	make-prg hug.t hugo.tns
 	rm hugo
-	rm hugo.t
+	rm hug.t
 
 ${OUTPUT}:${OBJS}
 	${CC} -o ${OUTPUT} ${SOURCES} ${CFLAGS} ${LDFLAGS} ${DEFINES} 

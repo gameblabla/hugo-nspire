@@ -5,7 +5,8 @@ DEFINES = -DLINUX -DINLINED_ACCESSORS -DSDL
 LDFLAGS = `sdl-config --cflags --libs` -lSDLmain -lSDL -lz
 OUTPUT = hugo
 
-SOURCES = ./src/subs_eagle.c \
+SOURCES = ./src/main.c \
+./src/subs_eagle.c \
 ./src/ogglength.c \
 ./src/cd.c \
 ./src/osd_linux_sdl_music.c \

@@ -110,16 +110,11 @@ int game_asked ()
 /*!
  * \return non zero if another game has to be launched
  */
-int play_game (void)
+int play_game (char* romname)
 {
 
   // Initialise the target machine (pce)
-#ifdef _TINSPIRE
-	if (InitPCE ("/exammode/usr/Press-to-Test/rom.pce.tns", backup_mem) != 0)
-#else
-	if (InitPCE ("./dduck.pce", backup_mem) != 0)
-#endif
- // if (InitPCE (cart_name, backup_mem) != 0)
+	if (InitPCE (romname, backup_mem) != 0)
     return 0;
 
   if (!(*osd_gfx_driver_list[video_driver].init) ())
@@ -160,7 +155,7 @@ int play_game (void)
 }
 
 
-int main (int argc, char *argv[])
+int hugo (int argc, char *argv[], char* romname)
 {
 	int error;
 	error = 0;
@@ -172,7 +167,7 @@ int main (int argc, char *argv[])
     {*/
 		/*if (game_asked ())
 		{*/
-			while (play_game ());
+			while (play_game (romname));
 		/*}
 		else
 		{

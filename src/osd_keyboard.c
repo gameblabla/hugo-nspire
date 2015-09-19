@@ -43,7 +43,7 @@ input_config config[16] = {
 	{  // Config 0
 		{
 			{ 0, 0, 0, 0, 0, 0, { SDLK_UP, SDLK_DOWN, SDLK_LEFT, SDLK_RIGHT,
-  				SDLK_SPACE, SDLK_LALT, SDLK_TAB, SDLK_RETURN, SDLK_c, SDLK_x,
+  				SDLK_LCTRL, SDLK_LSHIFT, SDLK_BACKSPACE, SDLK_RETURN, SDLK_TAB, SDLK_MENU,
   				-1, -1, -1, -1, -1, -1, -1, -1 } },
 			{ 0, 0, 0, 0, 0, 0, { 0 } },
 			{ 0, 0, 0, 0, 0, 0, { 0 } },

@@ -194,25 +194,26 @@ void osd_fix_filename_slashes(char* s)
 void
 osd_init_paths(int argc, char* argv[])
 {
-	char* home_path;
+	/* GAMEBLABLA : Disabled paths (temporary)*/
+	/*char* home_path;
 		
 	home_path = getenv("HOME");
 
 	// short_exe_name is not really the short part of the exe, but a real multi user aware
 	// path (when HOME environment variable is available)
 	if (home_path)
-		{			
+	{			
 			sprintf(short_exe_name,"%s/.hugo/",home_path);
 			
 			// Create directory if not existing
 			mkdir(short_exe_name,0777);			
-		}
+	}
 	else
-		{
-			strcpy(short_exe_name,"./");
-		}
+	{
+		strcpy(short_exe_name,"./");
+	}
 	
-  sprintf(log_filename,"%s%s",short_exe_name,"hugo.log");	
+	sprintf(log_filename,"%s%s",short_exe_name,"hugo.log");	
 		
 	// Set a temporary path per user (should it be by process ?)
 	sprintf(tmp_basepath, "%shugo.tmp", short_exe_name);
@@ -223,7 +224,7 @@ osd_init_paths(int argc, char* argv[])
 	mkdir(sav_basepath, 0777);
 		
 	// Set the video output directory
-  sprintf (video_path, "%svideo/", short_exe_name);
-	mkdir(video_path, 0777);
+	sprintf (video_path, "%svideo/", short_exe_name);
+	mkdir(video_path, 0777);*/
 
 }
